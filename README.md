@@ -1,2 +1,2 @@
 # RSDNet
-Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion
+This repo is the official project repository of the paper **Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion**.

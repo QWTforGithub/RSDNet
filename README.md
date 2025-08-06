@@ -1,3 +1,100 @@
 # RSDNet
-This repo is the official project repository of the paper **Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion**.<br/>
-This code will be released shortly...
+
+This repo is the official project repository of the paper **_Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion_**. 
+ -  [ [arXiv](https://arxiv.org/pdf/2508.03252) ]
+ -  The code will be released shortly...
+## The Overall Framework 
+<img src="assets/overall.png" alt="cdsegnet" width="900"/> <br/>
+**_CN : Conditional Network_** <br/> **_NN : Noise Network_** <br/>
+1) For end-to-end traditional DDPMs (Noise-Contional Framework, NCF), the Conditional Network (CN) extracts the conditional features for generating guidance. Meanwhile, the Noise Network (NN) predicts the scores from the task target, dominating the results of tasks (see left (a)).
+2) For CNF (Conditional-Noise Framework), CNF treats NN and CN as the auxiliary network and the dominant network in 3D tasks (see left (b)), respectively.
+## Citation
+If you find our paper useful to your research, please cite our work as an acknowledgment.
+```bib
+...
+```
+
+## Motivation
+...
+
+
+## Overview
+- [Installation](#installation)
+- [Data Preparation](#data-preparation)
+- [Model Zoo](#model-zoo)
+- [Quick Start](#quick-start)
+
+## Installation
+
+### Requirements
+The following environment is recommended for running **_RSDNet_** (an NVIDIA 3090 GPU or four NVIDIA 4090 GPUs):
+- Ubuntu: 18.04 and above
+- gcc/g++: 7.5 and above
+- CUDA: 11.6 and above
+- PyTorch: 1.13.1 and above
+- python: 3.8 and above
+
+### Environment
+
+- Base environment
+```
+conda create -n dlf python=3.8 -y
+conda activate dlf
+conda install ninja -y
+
+```
+
+## Data Preparation
+- ...
+
+### nuScenes
+- Download the official [nuScenes](https://www.nuscenes.org/nuscenes#download) (or [Baidu Disk](https://pan.baidu.com/s/1Rsbi-Q_2EUm05lwQgn8T3Q?pwd=1111)(code:1111)) dataset (with Lidar Segmentation) and organize the downloaded files as follows:
+  ```bash
+  NUSCENES_DIR
+  │── samples
+  │── sweeps
+  │── lidarseg
+  ...
+  │── v1.0-trainval 
+  │── v1.0-test
+  ```
+- The preprocess nuScenes information data can also be downloaded [[here](https://huggingface.co/datasets/Pointcept/nuscenes-compressed)] (only processed information, still need to download raw dataset and link to the folder), please agree the official license before download it.
+
+- Link raw dataset to processed NuScene dataset folder:
+  ```bash
+  # NUSCENES_DIR: the directory of downloaded nuScenes dataset.
+  # PROCESSED_NUSCENES_DIR: the directory of processed nuScenes dataset (output dir).
+  ln -s ${NUSCENES_DIR} {PROCESSED_NUSCENES_DIR}/raw
+  ```
+  then the processed nuscenes folder is organized as follows:
+  ```bash
+  nuscene
+  |── raw
+      │── samples
+      │── sweeps
+      │── lidarseg
+      ...
+      │── v1.0-trainval
+      │── v1.0-test
+  |── info
+  ```
+
+- Link processed dataset to codebase.
+  ```bash
+  # PROCESSED_NUSCENES_DIR: the directory of processed nuScenes dataset (output dir).
+  mkdir data
+  ln -s ${PROCESSED_NUSCENES_DIR} ${CODEBASE_DIR}/data/nuscenes
+  ```
+
+## Model Zoo
+...
+
+
+## Quick Start
+
+### Training
+...
+
+
+### Testing
+...

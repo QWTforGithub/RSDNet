@@ -8,7 +8,12 @@ This repo is the official project repository of the paper **_Robust Single-Stage
 ## Citation
 If you find our paper useful to your research, please cite our work as an acknowledgment.
 ```bib
-...
+@article{qu2025robust,
+  title={Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion},
+  author={Qu, Wentao and Mei, Guofeng and Wang, Jing and Wu, Yujiao and Huang, Xiaoshui and Xiao, Liang},
+  journal={arXiv preprint arXiv:2508.03252},
+  year={2025}
+}
 ```
 
 ## Motivation

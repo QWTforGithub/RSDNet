@@ -1,0 +1,826 @@
+2025-08-20 11:29:00,146   INFO  **********************Start logging**********************
+2025-08-20 11:29:00,146   INFO  CUDA_VISIBLE_DEVICES=ALL
+2025-08-20 11:29:00,146   INFO  Training in distributed mode : total_batch_size: 8
+2025-08-20 11:29:00,146   INFO  cfg_file         cfgs/nuscenes_models/fshnet_dm2.yaml
+2025-08-20 11:29:00,146   INFO  batch_size       2
+2025-08-20 11:29:00,146   INFO  epochs           36
+2025-08-20 11:29:00,147   INFO  workers          4
+2025-08-20 11:29:00,147   INFO  extra_tag        default
+2025-08-20 11:29:00,147   INFO  ckpt             None
+2025-08-20 11:29:00,147   INFO  pretrained_model None
+2025-08-20 11:29:00,147   INFO  launcher         pytorch
+2025-08-20 11:29:00,147   INFO  tcp_port         18888
+2025-08-20 11:29:00,147   INFO  sync_bn          False
+2025-08-20 11:29:00,147   INFO  random_seed      None
+2025-08-20 11:29:00,147   INFO  ckpt_save_interval 1
+2025-08-20 11:29:00,147   INFO  local_rank       0
+2025-08-20 11:29:00,147   INFO  max_ckpt_save_num 30
+2025-08-20 11:29:00,148   INFO  merge_all_iters_to_one_epoch False
+2025-08-20 11:29:00,148   INFO  set_cfgs         None
+2025-08-20 11:29:00,148   INFO  max_waiting_mins 0
+2025-08-20 11:29:00,148   INFO  start_epoch      0
+2025-08-20 11:29:00,148   INFO  num_epochs_to_eval 0
+2025-08-20 11:29:00,148   INFO  save_to_file     False
+2025-08-20 11:29:00,148   INFO  use_tqdm_to_record True
+2025-08-20 11:29:00,148   INFO  logger_iter_interval 50
+2025-08-20 11:29:00,148   INFO  ckpt_save_time_interval 300
+2025-08-20 11:29:00,148   INFO  wo_gpu_stat      True
+2025-08-20 11:29:00,148   INFO  use_amp          False
+2025-08-20 11:29:00,149   INFO  output_dir       train/nuscenes/fshnet_dm.yaml_0820_2
+2025-08-20 11:29:00,149   INFO  cfg.ROOT_DIR: /root/models/RSDNet_aimax
+2025-08-20 11:29:00,149   INFO  cfg.LOCAL_RANK: 0
+2025-08-20 11:29:00,149   INFO  cfg.CLASS_NAMES: ['car', 'truck', 'construction_vehicle', 'bus', 'trailer', 'barrier', 'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone']
+2025-08-20 11:29:00,149   INFO  ----------- DATA_CONFIG -----------
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.DATASET: NuScenesDataset
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/nuscenes
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.VERSION: v1.0-trainval
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.MAX_SWEEPS: 10
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.PRED_VELOCITY: True
+2025-08-20 11:29:00,149   INFO  cfg.DATA_CONFIG.SET_NAN_VELOCITY_TO_ZEROS: True
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.FILTER_MIN_POINTS_IN_GT: 1
+2025-08-20 11:29:00,150   INFO  ----------- DATA_SPLIT -----------
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2025-08-20 11:29:00,150   INFO  ----------- INFO_PATH -----------
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.INFO_PATH.train: ['nuscenes_infos_10sweeps_train.pkl']
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.INFO_PATH.test: ['nuscenes_infos_10sweeps_val.pkl']
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.BALANCED_RESAMPLING: False
+2025-08-20 11:29:00,150   INFO  ----------- DATA_AUGMENTOR -----------
+2025-08-20 11:29:00,150   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'DB_INFO_PATH': ['nuscenes_dbinfos_10sweeps_withvelo.pkl'], 'USE_SHARED_MEMORY': False, 'DB_DATA_PATH': ['nuscenes_dbinfos_10sweeps_withvelo_global.npy'], 'PREPARE': {'filter_by_min_points': ['car:5', 'truck:5', 'construction_vehicle:5', 'bus:5', 'trailer:5', 'barrier:5', 'motorcycle:5', 'bicycle:5', 'pedestrian:5', 'traffic_cone:5']}, 'SAMPLE_GROUPS': ['car:2', 'truck:3', 'construction_vehicle:7', 'bus:4', 'trailer:6', 'barrier:2', 'motorcycle:6', 'bicycle:6', 'pedestrian:2', 'traffic_cone:2'], 'NUM_POINT_FEATURES': 5, 'DATABASE_WITH_FAKELIDAR': False, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x', 'y']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.9, 1.1]}, {'NAME': 'random_world_translation', 'NOISE_TRANSLATE_STD': [0.5, 0.5, 0.5]}]
+2025-08-20 11:29:00,151   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity', 'timestamp']
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': True}}, {'NAME': 'transform_points_to_voxels_placeholder', 'VOXEL_SIZE': [0.3, 0.3, 0.2]}]
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/nuscenes_dataset.yaml
+2025-08-20 11:29:00,151   INFO  ----------- SAMPLED_INTERVAL -----------
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.train: 1
+2025-08-20 11:29:00,151   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.test: 1
+2025-08-20 11:29:00,152   INFO  ----------- CAMERA_CONFIG -----------
+2025-08-20 11:29:00,152   INFO  cfg.DATA_CONFIG.CAMERA_CONFIG.USE_CAMERA: False
+2025-08-20 11:29:00,152   INFO  ----------- IMAGE -----------
+2025-08-20 11:29:00,152   INFO  cfg.DATA_CONFIG.CAMERA_CONFIG.IMAGE.FINAL_DIM: [256, 704]
+2025-08-20 11:29:00,152   INFO  cfg.DATA_CONFIG.CAMERA_CONFIG.IMAGE.RESIZE_LIM_TRAIN: [0.38, 0.55]
+2025-08-20 11:29:00,152   INFO  cfg.DATA_CONFIG.CAMERA_CONFIG.IMAGE.RESIZE_LIM_TEST: [0.48, 0.48]
+2025-08-20 11:29:00,152   INFO  ----------- MODEL -----------
+2025-08-20 11:29:00,152   INFO  cfg.MODEL.NAME: TransFusion
+2025-08-20 11:29:00,152   INFO  ----------- VFE -----------
+2025-08-20 11:29:00,152   INFO  cfg.MODEL.VFE.NAME: DynamicVoxelVFE
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.USE_NORM: True
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.NUM_FILTERS: [64, 64]
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM_SCALE: big
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM: True
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM_INPUT: xt
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM_TARGET: noise
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM_INPUT_CHANNEL_3D: 64
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.DM_OUTPUT_CHANNEL: 8
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.T: 1000
+2025-08-20 11:29:00,153   INFO  cfg.MODEL.VFE.T_DIM: 128
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.BETA_START: 0.0001
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.BETA_END: 0.02
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.NOISE_SCHEDULE: linear
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.SKIP_CONNECTION_MODE: cat
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.SKIP_CONNECTION_SCALE: equal
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.CLASS_NUM: 10
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.POINT_CLOUD_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.VOXEL_SIZE: [0.3, 0.3, 0.2]
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.CLASS_HIDDEN_DIM: 128
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.GEOMETRY_HIDDEN_DIM: 128
+2025-08-20 11:29:00,154   INFO  cfg.MODEL.VFE.CON_SKIP_CONNECTION_MODE: add
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.CONDITION: True
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.SCALE_3D: [1.0, 5.0]
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.ROTATION_3D: [0.0, 4.0]
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.TRANSLATION_3D: [0.0, 5.0]
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.DATA_TARGET: noise/x0
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.DATA_REVERSE: False
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.DP: True
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.VFE.USE_DISP_LOSS: False
+2025-08-20 11:29:00,155   INFO  ----------- BACKBONE_3D -----------
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.BACKBONE_3D.NAME: FSHNet_nusc
+2025-08-20 11:29:00,155   INFO  cfg.MODEL.BACKBONE_3D.FEATURE_DIM: 128
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.WIN_SIZE: 20
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD_FEATURE_DIM: 128
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD_NUM_LAYERS: 4
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD_NUM_SBB: [2, 1, 1]
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD_DOWN_STRIDE: [1, 2, 2]
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD_DOWN_KERNEL_SIZE: [3, 3, 3]
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.AFD: True
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.FG_THRESHOLD: 0.2
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.FEATMAP_STRIDE: 2
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.DETACH_FEATURE: True
+2025-08-20 11:29:00,156   INFO  cfg.MODEL.BACKBONE_3D.GREOUP_POOLING_KERNEL_SIZE: [9, 15, 5, 5]
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.GROUP_CLASS_NAMES: [['car', 'truck', 'construction_vehicle'], ['bus', 'trailer'], ['barrier', 'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone']]
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_SCALE: big
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM: True
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT: xt
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_TARGET: noise
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT_CHANNEL_2D: 128
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT_CHANNEL_3D: 128
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.DM_OUTPUT_CHANNEL: 8
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.T: 1000
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.T_DIM: 128
+2025-08-20 11:29:00,157   INFO  cfg.MODEL.BACKBONE_3D.BETA_START: 0.0001
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.BETA_END: 0.02
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.NOISE_SCHEDULE: linear
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.SKIP_CONNECTION_MODE: cat
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.SKIP_CONNECTION_SCALE: equal
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.CLASS_NUM: 10
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.POINT_CLOUD_RANGE: [-54.0, -54.0, -5.0, 54.0, 54.0, 3.0]
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.VOXEL_SIZE: [0.3, 0.3, 0.2]
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.CLASS_HIDDEN_DIM: 128
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.GEOMETRY_HIDDEN_DIM: 128
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.CON_SKIP_CONNECTION_MODE: add
+2025-08-20 11:29:00,158   INFO  cfg.MODEL.BACKBONE_3D.CONDITION: True
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.SCALE_2D: [0.01, 1.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.ROTATION_2D: [-4.0, 0.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.TRANSLATION_2D: [-5.0, 0.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.SCALE_3D: [1.0, 5.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.ROTATION_3D: [0.0, 4.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.TRANSLATION_3D: [0.0, 5.0]
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.DATA_TARGET: noise/x0
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.DATA_REVERSE: True
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.DP: True
+2025-08-20 11:29:00,159   INFO  cfg.MODEL.BACKBONE_3D.USE_DISP_LOSS: False
+2025-08-20 11:29:00,159   INFO  ----------- DENSE_HEAD -----------
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.NAME: TransFusionHead
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.QUERY_RADIUS: 20
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.QUERY_LOCAL: True
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: True
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.INPUT_FEATURES: 128
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.NUM_PROPOSALS: 600
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.HIDDEN_CHANNEL: 128
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.NUM_CLASSES: 10
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.NUM_HEADS: 8
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.NMS_KERNEL_SIZE: 3
+2025-08-20 11:29:00,160   INFO  cfg.MODEL.DENSE_HEAD.FFN_CHANNEL: 256
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.DROPOUT: 0.1
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.BN_MOMENTUM: 0.1
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.ACTIVATION: relu
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2025-08-20 11:29:00,161   INFO  ----------- SEPARATE_HEAD_CFG -----------
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['center', 'height', 'dim', 'rot', 'vel', 'iou']
+2025-08-20 11:29:00,161   INFO  ----------- HEAD_DICT -----------
+2025-08-20 11:29:00,161   INFO  ----------- center -----------
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.out_channels: 2
+2025-08-20 11:29:00,161   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.center.num_conv: 2
+2025-08-20 11:29:00,161   INFO  ----------- height -----------
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.height.out_channels: 1
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.height.num_conv: 2
+2025-08-20 11:29:00,162   INFO  ----------- dim -----------
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.out_channels: 3
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.dim.num_conv: 2
+2025-08-20 11:29:00,162   INFO  ----------- rot -----------
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.out_channels: 2
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.rot.num_conv: 2
+2025-08-20 11:29:00,162   INFO  ----------- vel -----------
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.out_channels: 2
+2025-08-20 11:29:00,162   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.vel.num_conv: 2
+2025-08-20 11:29:00,163   INFO  ----------- iou -----------
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.out_channels: 1
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.num_conv: 2
+2025-08-20 11:29:00,163   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 2
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.DATASET: nuScenes
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2025-08-20 11:29:00,163   INFO  ----------- HUNGARIAN_ASSIGNER -----------
+2025-08-20 11:29:00,163   INFO  ----------- cls_cost -----------
+2025-08-20 11:29:00,163   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.gamma: 2.0
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.alpha: 0.25
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.cls_cost.weight: 0.15
+2025-08-20 11:29:00,164   INFO  ----------- reg_cost -----------
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.reg_cost.weight: 0.25
+2025-08-20 11:29:00,164   INFO  ----------- iou_cost -----------
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.HUNGARIAN_ASSIGNER.iou_cost.weight: 0.25
+2025-08-20 11:29:00,164   INFO  ----------- LOSS_CONFIG -----------
+2025-08-20 11:29:00,164   INFO  ----------- LOSS_WEIGHTS -----------
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_3d_mse_weight: 0.1
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_2d_mse_weight: 0.1
+2025-08-20 11:29:00,164   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_3d_disper_weight: 0.1
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_2d_disper_weight: 0.1
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.bbox_weight: 0.25
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.hm_weight: 1.0
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.iou_weight: 0.5
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.iou_reg_weight: 0.5
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.2, 0.2]
+2025-08-20 11:29:00,165   INFO  ----------- LOSS_CLS -----------
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.use_sigmoid: True
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.gamma: 2.0
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_CLS.alpha: 0.25
+2025-08-20 11:29:00,165   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_IOU: True
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_IOU_REG: True
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_TYPE: EW
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_DM: True
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_DISP: False
+2025-08-20 11:29:00,166   INFO  ----------- POST_PROCESSING -----------
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.0
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_RANGE: [-61.2, -61.2, -10.0, 61.2, 61.2, 10.0]
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.USE_IOU_TO_RECTIFY_SCORE: True
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.IOU_RECTIFIER: [0.5]
+2025-08-20 11:29:00,166   INFO  ----------- NMS_CONFIG -----------
+2025-08-20 11:29:00,166   INFO  cfg.MODEL.DENSE_HEAD.NMS_CONFIG.NMS_TYPE: nms_gpu
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.DENSE_HEAD.NMS_CONFIG.NMS_THRESH: 0.2
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.DENSE_HEAD.NMS_CONFIG.NMS_PRE_MAXSIZE: 1000
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.DENSE_HEAD.NMS_CONFIG.NMS_POST_MAXSIZE: 100
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.DENSE_HEAD.NMS_CONFIG.SCORE_THRES: 0.0
+2025-08-20 11:29:00,167   INFO  ----------- POST_PROCESSING -----------
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.POST_PROCESSING.SCORE_THRESH: 0.1
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.POST_PROCESSING.OUTPUT_RAW_SCORE: False
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: kitti
+2025-08-20 11:29:00,167   INFO  ----------- NMS_CONFIG -----------
+2025-08-20 11:29:00,167   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.MULTI_CLASSES_NMS: True
+2025-08-20 11:29:00,168   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: nms_gpu
+2025-08-20 11:29:00,168   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: 0.2
+2025-08-20 11:29:00,168   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: 1000
+2025-08-20 11:29:00,168   INFO  cfg.MODEL.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: 83
+2025-08-20 11:29:00,168   INFO  ----------- OPTIMIZATION -----------
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 36
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.LR: 0.003
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.03
+2025-08-20 11:29:00,168   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.PCT_START: 0.6
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 10
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2025-08-20 11:29:00,169   INFO  cfg.OPTIMIZATION.LOSS_SCALE_FP16: 32
+2025-08-20 11:29:00,169   INFO  ----------- HOOK -----------
+2025-08-20 11:29:00,170   INFO  ----------- DisableAugmentationHook -----------
+2025-08-20 11:29:00,170   INFO  cfg.HOOK.DisableAugmentationHook.DISABLE_AUG_LIST: ['gt_sampling']
+2025-08-20 11:29:00,170   INFO  cfg.HOOK.DisableAugmentationHook.NUM_LAST_EPOCHS: 5
+2025-08-20 11:29:00,170   INFO  cfg.TAG: fshnet_dm2
+2025-08-20 11:29:00,170   INFO  cfg.EXP_GROUP_PATH: nuscenes_models
+2025-08-20 11:29:00,170   INFO  cfg.OUTPUT_DIR: /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2
+2025-08-20 11:29:00,197   INFO  ----------- Create dataloader & network & optimizer -----------
+2025-08-20 11:29:06,581   INFO  Database filter by min points car: 339949 => 294532
+2025-08-20 11:29:06,595   INFO  Database filter by min points truck: 65262 => 60344
+2025-08-20 11:29:06,598   INFO  Database filter by min points construction_vehicle: 11050 => 10589
+2025-08-20 11:29:06,600   INFO  Database filter by min points bus: 12286 => 11619
+2025-08-20 11:29:06,602   INFO  Database filter by min points trailer: 19202 => 17934
+2025-08-20 11:29:06,617   INFO  Database filter by min points barrier: 107507 => 101993
+2025-08-20 11:29:06,619   INFO  Database filter by min points motorcycle: 8846 => 8055
+2025-08-20 11:29:06,620   INFO  Database filter by min points bicycle: 8185 => 7531
+2025-08-20 11:29:06,640   INFO  Database filter by min points pedestrian: 161928 => 148520
+2025-08-20 11:29:06,652   INFO  Database filter by min points traffic_cone: 62964 => 55504
+2025-08-20 11:29:06,756   INFO  Loading NuScenes dataset
+2025-08-20 11:29:09,823   INFO  Total samples for NuScenes dataset: 28870
+2025-08-20 11:29:11,984   INFO  ----------- Model TransFusion created, param count: 16464594 -----------
+2025-08-20 11:29:11,984   INFO  ----------- Random Seed : 198743 -----------
+2025-08-20 11:29:14,886   INFO  ----------- Model TransFusion created, param count: 16464594 -----------
+2025-08-20 11:29:14,886   INFO  **********************Start training nuscenes_models/fshnet_dm2(default)**********************
+2025-08-20 11:34:16,390   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 11:39:17,797   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 11:44:17,251   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 11:49:16,481   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 11:54:16,693   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 11:59:17,449   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:04:17,258   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:09:17,024   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:14:17,099   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:19:16,693   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:24:17,129   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:29:17,281   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:33:40,884   INFO  epoch0_losses: 9.051674873157035
+2025-08-20 12:38:42,297   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:43:42,695   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:48:42,184   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:53:42,562   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 12:58:42,612   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:03:42,698   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:08:42,103   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:13:42,765   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:18:42,274   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:23:42,151   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:28:42,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:33:42,655   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:38:04,936   INFO  epoch1_losses: 5.629073200198745
+2025-08-20 13:43:06,310   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:48:06,773   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:53:06,291   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 13:58:07,813   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:03:06,777   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:08:06,732   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:13:06,494   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:18:06,454   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:23:06,826   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:28:07,015   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:33:06,873   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:38:06,150   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:42:05,061   INFO  epoch2_losses: 5.1171252334933754
+2025-08-20 14:47:06,559   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:52:06,764   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 14:57:07,396   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:02:06,863   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:07:06,536   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:12:07,090   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:17:06,500   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:22:07,119   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:27:06,297   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:32:06,983   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:37:06,624   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:42:06,568   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:46:45,863   INFO  epoch3_losses: 4.80862899438005
+2025-08-20 15:51:48,089   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 15:56:47,986   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:01:47,346   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:06:47,664   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:11:47,841   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:16:47,910   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:21:47,740   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:26:47,863   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:31:48,265   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:36:47,791   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:41:48,283   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:46:48,081   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:51:48,012   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 16:52:11,476   INFO  epoch4_losses: 4.627316537607605
+2025-08-20 16:57:13,492   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:02:13,354   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:07:13,138   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:12:13,322   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:17:12,861   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:22:13,047   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:27:13,035   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:32:13,505   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:37:13,457   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:42:13,767   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:47:13,235   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:52:13,221   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 17:57:06,814   INFO  epoch5_losses: 4.504674470302437
+2025-08-20 18:02:08,831   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:07:09,085   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:12:08,555   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:17:08,358   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:22:08,653   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:27:08,552   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:32:08,874   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:37:08,702   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:42:08,574   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:47:08,221   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:52:08,637   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 18:57:08,725   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:01:39,758   INFO  epoch6_losses: 4.420886135012134
+2025-08-20 19:06:41,719   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:11:41,559   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:16:41,448   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:21:42,077   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:26:41,133   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:31:41,377   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:36:41,016   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:41:41,502   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:46:41,234   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:51:41,343   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 19:56:41,247   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:01:41,691   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:06:00,903   INFO  epoch7_losses: 4.342640514881137
+2025-08-20 20:11:03,194   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:16:02,059   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:21:02,558   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:26:03,100   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:31:02,614   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:36:03,078   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:41:02,971   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:46:02,579   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:51:02,069   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 20:56:02,223   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:01:02,582   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:06:02,429   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:10:36,101   INFO  epoch8_losses: 4.28212398521852
+2025-08-20 21:15:37,488   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:20:37,668   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:25:38,044   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:30:38,121   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:35:38,130   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:40:37,812   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:45:38,260   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:50:37,861   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 21:55:37,817   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:00:37,695   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:05:38,158   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:10:38,174   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:15:23,620   INFO  epoch9_losses: 4.237675226900709
+2025-08-20 22:20:25,691   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:25:25,990   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:30:25,675   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:35:25,884   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:40:25,425   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:45:25,715   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:50:25,733   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 22:55:25,013   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:00:25,194   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:05:25,134   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:10:25,020   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:15:24,894   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:19:48,334   INFO  epoch10_losses: 4.198478303975628
+2025-08-20 23:24:49,765   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:29:49,986   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:34:49,851   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:39:50,223   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:44:49,797   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:49:50,675   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:54:50,176   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-20 23:59:50,371   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:04:49,891   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:09:50,616   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:14:50,281   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:19:50,333   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:24:29,744   INFO  epoch11_losses: 4.168778936497621
+2025-08-21 00:29:31,607   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:34:31,367   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:39:31,553   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:44:31,325   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:49:31,966   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:54:33,140   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 00:59:31,907   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:04:31,661   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:09:30,986   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:14:31,322   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:19:31,674   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:24:31,603   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:29:06,002   INFO  epoch12_losses: 4.142481335232086
+2025-08-21 01:34:08,146   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:39:07,459   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:44:08,210   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:49:07,502   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:54:07,757   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 01:59:07,948   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:04:08,045   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:09:07,978   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:14:07,273   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:19:08,018   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:24:07,063   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:29:08,061   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:33:09,980   INFO  epoch13_losses: 4.107728680007905
+2025-08-21 02:38:11,980   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:43:11,377   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:48:12,112   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:53:11,602   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 02:58:11,169   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:03:11,670   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:08:11,848   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:13:13,067   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:18:11,408   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:23:11,802   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:28:12,267   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:33:11,546   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:37:33,113   INFO  epoch14_losses: 4.092735347043579
+2025-08-21 03:42:34,786   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:47:34,732   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:52:34,946   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 03:57:34,628   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:02:34,456   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:07:35,548   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:12:34,698   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:17:35,128   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:22:35,373   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:27:35,148   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:32:35,225   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:37:35,249   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:42:19,469   INFO  epoch15_losses: 4.082501130805646
+2025-08-21 04:47:21,845   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:52:21,517   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 04:57:21,384   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:02:21,095   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:07:21,531   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:12:21,511   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:17:21,339   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:22:21,000   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:27:21,129   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:32:21,715   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:37:21,503   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:42:21,528   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:47:03,519   INFO  epoch16_losses: 4.072515682835234
+2025-08-21 05:52:04,802   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 05:57:04,806   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:02:05,225   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:07:05,235   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:12:04,795   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:17:05,733   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:22:05,642   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:27:05,493   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:32:05,138   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:37:05,411   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:42:04,807   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:47:04,928   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:52:05,075   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 06:56:08,021   INFO  epoch17_losses: 4.0705202502469735
+2025-08-21 07:01:09,779   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:06:10,236   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:11:10,255   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:16:09,465   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:21:09,983   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:26:10,185   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:31:10,311   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:36:10,490   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:41:10,352   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:46:09,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:51:09,250   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 07:56:10,321   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:01:09,693   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:03:36,211   INFO  epoch18_losses: 4.061313112048305
+2025-08-21 08:08:37,899   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:13:37,457   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:18:37,637   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:23:38,278   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:28:38,193   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:33:38,255   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:38:38,208   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:43:37,805   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:48:38,383   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:53:37,977   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 08:58:38,008   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:03:37,482   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:08:09,174   INFO  epoch19_losses: 4.046023766249294
+2025-08-21 09:13:11,268   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:18:10,778   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:23:10,898   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:28:11,012   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:33:10,391   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:38:10,270   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:43:10,809   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:48:10,816   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:53:10,792   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 09:58:10,617   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:03:10,331   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:08:11,231   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:12:39,343   INFO  epoch20_losses: 4.042239132433527
+2025-08-21 10:17:40,817   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:22:41,858   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:27:40,777   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:32:41,207   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:37:40,983   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:42:40,602   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:47:41,229   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:52:41,210   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 10:57:40,539   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:02:41,421   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:07:41,230   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:12:40,493   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:17:37,118   INFO  epoch21_losses: 4.018612399742722
+2025-08-21 11:22:38,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:27:38,839   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:32:39,185   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:37:39,234   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:42:39,251   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:47:38,839   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:52:38,753   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 11:57:38,986   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:02:40,344   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:07:40,425   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:12:40,162   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:17:38,713   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:22:38,504   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:25:38,046   INFO  epoch22_losses: 4.0037348833266435
+2025-08-21 12:30:40,926   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:35:43,396   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:40:42,427   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:45:40,987   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:50:41,079   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 12:55:41,237   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:00:41,467   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:05:41,583   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:10:41,621   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:15:41,415   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:20:41,813   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:25:41,168   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:30:41,627   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:35:41,537   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:35:53,777   INFO  epoch23_losses: 3.9681322806824206
+2025-08-21 13:40:55,925   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:45:55,726   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:50:55,656   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 13:55:55,185   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:00:55,465   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:05:55,192   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:10:55,336   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:15:55,300   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:20:56,831   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:25:55,233   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:30:54,945   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:35:56,614   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:40:55,136   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:45:58,070   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:49:34,494   INFO  epoch24_losses: 3.9198096299244116
+2025-08-21 14:54:36,339   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 14:59:36,566   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:04:36,355   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:09:40,009   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:14:35,902   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:19:38,540   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:24:36,545   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:29:36,564   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:34:36,245   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:39:35,679   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:44:35,785   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:49:36,114   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:54:35,799   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 15:59:36,776   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:02:25,148   INFO  epoch25_losses: 3.8644210351540726
+2025-08-21 16:07:27,250   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:12:27,514   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:17:26,671   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:22:27,398   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:27:26,583   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:32:27,496   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:37:27,065   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:42:27,203   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:47:27,414   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:52:27,575   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 16:57:27,381   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:02:27,142   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:07:27,785   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:08:57,472   INFO  epoch26_losses: 3.7929555627737526
+2025-08-21 17:13:59,060   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:18:59,524   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:23:59,311   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:28:59,733   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:33:58,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:38:59,476   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:43:59,192   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:48:59,686   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:53:59,788   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 17:58:59,047   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:03:59,194   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:08:58,922   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:13:59,060   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:14:43,785   INFO  epoch27_losses: 3.711084274150355
+2025-08-21 18:19:45,791   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:24:45,410   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:29:45,360   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:34:45,727   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:39:53,056   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:44:45,782   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:49:45,414   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:54:48,710   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 18:59:45,299   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:04:46,517   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:09:46,087   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:14:45,741   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:19:46,242   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:24:45,282   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:29:45,300   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:32:05,056   INFO  epoch28_losses: 3.6148649002251183
+2025-08-21 19:37:06,653   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:42:07,206   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:47:06,645   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:52:06,847   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 19:57:07,195   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:02:07,057   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:07:07,143   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:12:06,298   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:17:06,491   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:22:06,528   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:27:07,092   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:32:06,454   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:37:06,989   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:38:46,975   INFO  epoch29_losses: 3.5096830864400537
+2025-08-21 20:43:50,716   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:48:50,165   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:53:53,465   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 20:58:49,873   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:03:50,471   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:08:49,728   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:13:50,525   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:18:53,429   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:23:49,937   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:28:50,027   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:33:50,613   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:38:50,055   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:43:50,090   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:48:50,627   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 21:50:11,811   INFO  epoch30_losses: 3.400798944480269
+2025-08-21 21:50:12,129   INFO  Disable augmentations: ['gt_sampling']
+2025-08-21 21:55:14,582   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:00:14,966   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:05:14,660   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:10:14,784   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:15:14,770   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:20:14,163   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:25:14,376   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:30:14,600   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:35:14,393   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:40:14,780   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:45:14,450   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:50:14,678   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 22:52:06,918   INFO  epoch31_losses: 4.365423335142828
+2025-08-21 22:57:09,176   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:02:08,440   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:07:09,364   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:12:08,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:17:08,763   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:22:08,849   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:27:08,394   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:32:09,099   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:37:08,265   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:42:08,257   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:47:08,301   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:52:09,475   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-21 23:52:52,740   INFO  epoch32_losses: 4.086578924946918
+2025-08-21 23:57:54,970   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:02:54,496   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:07:55,126   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:12:54,775   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:17:54,644   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:22:54,435   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:27:54,666   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:32:54,253   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:37:54,939   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:42:54,223   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:47:54,973   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:52:54,919   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 00:53:37,132   INFO  epoch33_losses: 3.9321898914549482
+2025-08-22 00:58:39,270   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:03:39,416   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:08:39,598   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:13:39,495   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:18:39,443   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:23:39,161   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:28:39,124   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:33:39,430   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:38:39,266   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:43:38,974   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:48:39,835   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:53:39,230   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 01:54:20,937   INFO  epoch34_losses: 3.81532377489355
+2025-08-22 01:59:22,703   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:04:22,383   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:09:22,854   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:14:23,032   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:19:22,960   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:24:22,867   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:29:22,846   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:34:23,072   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:39:23,222   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:44:22,908   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:49:23,246   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:54:22,592   INFO  Save latest model to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/latest_model
+2025-08-22 02:55:20,257   INFO  epoch35_losses: 3.777721618055207
+2025-08-22 02:55:20,691   INFO  batch_losses: [9.051674873157035, 5.629073200198745, 5.1171252334933754, 4.80862899438005, 4.627316537607605, 4.504674470302437, 4.420886135012134, 4.342640514881137, 4.28212398521852, 4.237675226900709, 4.198478303975628, 4.168778936497621, 4.142481335232086, 4.107728680007905, 4.092735347043579, 4.082501130805646, 4.072515682835234, 4.0705202502469735, 4.061313112048305, 4.046023766249294, 4.042239132433527, 4.018612399742722, 4.0037348833266435, 3.9681322806824206, 3.9198096299244116, 3.8644210351540726, 3.7929555627737526, 3.711084274150355, 3.6148649002251183, 3.5096830864400537, 3.400798944480269, 4.365423335142828, 4.086578924946918, 3.9321898914549482, 3.81532377489355, 3.777721618055207]
+2025-08-22 02:55:20,859   INFO  **********************End training nuscenes_models/fshnet_dm2(default)**********************
+
+
+
+2025-08-22 02:55:20,860   INFO  **********************Start evaluation nuscenes_models/fshnet_dm2(default)**********************
+2025-08-22 02:55:20,860   INFO  Loading NuScenes dataset
+2025-08-22 02:55:21,385   INFO  Total samples for NuScenes dataset: 6019
+2025-08-22 02:55:21,387   INFO  ==> Loading parameters from checkpoint /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/ckpt/checkpoint_epoch_36.pth to CPU
+2025-08-22 02:55:21,642   INFO  ==> Checkpoint trained from version: pcdet+0.6.0+0000000
+2025-08-22 02:55:21,726   INFO  ==> Done (loaded 1319/1319)
+2025-08-22 02:55:21,751   INFO  *************** EPOCH 36 EVALUATION *****************
+2025-08-22 03:00:05,094   INFO  *************** Performance of EPOCH 36 *****************
+2025-08-22 03:00:05,094   INFO  Generate label finished(sec_per_example: 0.0470 second).
+2025-08-22 03:00:05,094   INFO  recall_roi_0.3: 0.000000
+2025-08-22 03:00:05,094   INFO  recall_rcnn_0.3: 0.818429
+2025-08-22 03:00:05,094   INFO  recall_roi_0.5: 0.000000
+2025-08-22 03:00:05,094   INFO  recall_rcnn_0.5: 0.627266
+2025-08-22 03:00:05,094   INFO  recall_roi_0.7: 0.000000
+2025-08-22 03:00:05,095   INFO  recall_rcnn_0.7: 0.310620
+2025-08-22 03:00:05,098   INFO  Average predicted number of objects(6019 samples): 268.443
+2025-08-22 03:05:49,745   INFO  The predictions of NuScenes have been saved to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/eval/eval_with_train/epoch_36/val/final_result/data/results_nusc.json
+2025-08-22 03:09:34,936   INFO  ----------------Nuscene detection_cvpr_2019 results-----------------
+***car error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.17, 0.15, 0.10, 0.28, 0.19 | 79.57, 88.25, 90.92, 92.03 | mean AP: 0.876927827664449
+***truck error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.28, 0.17, 0.08, 0.25, 0.22 | 50.32, 67.34, 72.80, 76.28 | mean AP: 0.666856429985104
+***construction_vehicle error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.73, 0.44, 0.82, 0.14, 0.31 | 4.59, 20.74, 42.51, 53.85 | mean AP: 0.3042097600158159
+***bus error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.31, 0.16, 0.06, 0.50, 0.24 | 57.76, 80.36, 88.80, 90.42 | mean AP: 0.7933474381268139
+***trailer error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.52, 0.22, 0.48, 0.20, 0.17 | 14.74, 40.83, 57.86, 65.44 | mean AP: 0.44718991190563295
+***barrier error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.19, 0.25, 0.06, nan, nan | 70.69, 80.75, 84.17, 85.28 | mean AP: 0.8022474074495665
+***motorcycle error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.19, 0.23, 0.24, 0.46, 0.25 | 67.07, 78.61, 79.51, 79.93 | mean AP: 0.7628107237138244
+***bicycle error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.16, 0.26, 0.35, 0.21, 0.01 | 57.20, 59.68, 60.01, 60.28 | mean AP: 0.5929187421428397
+***pedestrian error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.12, 0.27, 0.34, 0.22, 0.09 | 87.24, 88.40, 89.31, 90.15 | mean AP: 0.8877272948568927
+***traffic_cone error@trans, scale, orient, vel, attr | AP@0.5, 1.0, 2.0, 4.0
+0.11, 0.31, nan, nan, nan | 78.32, 79.40, 80.53, 82.58 | mean AP: 0.8020829410825888
+--------------average performance-------------
+trans_err:	 0.2767
+scale_err:	 0.2457
+orient_err:	 0.2794
+vel_err:	 0.2823
+attr_err:	 0.1863
+mAP:	 0.6936
+NDS:	 0.7198
+
+2025-08-22 03:09:34,939   INFO  Result is saved to /root/models/RSDNet_aimax/tools/train/nuscenes/fshnet_dm.yaml_0820_2/eval/eval_with_train/epoch_36/val
+2025-08-22 03:09:34,940   INFO  ****************Evaluation done.*****************
+2025-08-22 03:09:34,972   INFO  Epoch 36 has been evaluated
+2025-08-22 03:10:05,004   INFO  **********************End evaluation nuscenes_models/fshnet_dm2(default)**********************

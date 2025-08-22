@@ -91,7 +91,7 @@ conda install ninja -y
 ## Model Zoo
 | Model | Benchmark | Only Training Data? | Num GPUs | Val NDS | Val mAP | checkpoint |
 | :---: | :---: |:---------------:| :---: | :---: | :---: | :---: |
-| RSDNet | nuScenes |     &check;     | 8 | 71.9 | 69.3% | [Link1](https://pan.baidu.com/s/1rAUHa4OHmT_Q1I2Pi_sVog?pwd=1111), [Link2](https://drive.google.com/drive/folders/1iRS5hMci8ZWW4uGYTmmXCBA-wwjjbjTW?usp=sharing) |
+| RSDNet | nuScenes |     &check;     | 8 | 71.9 | 69.3% | [Link1](https://pan.baidu.com/s/18GjiZWCnJnBN9As-LOaExw?pwd=1111), [Link2](https://drive.google.com/drive/folders/1OpYCJhv0By0rroiNUNGtrlnuFUYRrqOe?usp=drive_link) |
 
 
 ## Quick Start

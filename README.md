@@ -89,9 +89,9 @@ conda install ninja -y
   ```
 
 ## Model Zoo
-| Model | Benchmark | Only Training Data? | Num GPUs | Val NDS | Val mAP | checkpoint |
-| :---: | :---: |:---------------:| :---: | :---: | :---: | :---: |
-| RSDNet | nuScenes |     &check;     | 8 | 71.9 | 69.3% | [Link1](https://pan.baidu.com/s/18GjiZWCnJnBN9As-LOaExw?pwd=1111), [Link2](https://drive.google.com/drive/folders/1OpYCJhv0By0rroiNUNGtrlnuFUYRrqOe?usp=drive_link) |
+| Model | Benchmark | Only Training Data? | Num GPUs | Val NDS | Val mAP| log | checkpoint |
+| :---: | :---: |:---------------:| :---: | :---: | :---: | :---: | :---: |
+| RSDNet | nuScenes |     &check;     | 8 | 71.9 | 69.3% | [train_log](https://github.com/QWTforGithub/RSDNet/blob/main/outputs/nuScenes/train.log) | [Link1](https://pan.baidu.com/s/18GjiZWCnJnBN9As-LOaExw?pwd=1111), [Link2](https://drive.google.com/drive/folders/1OpYCJhv0By0rroiNUNGtrlnuFUYRrqOe?usp=drive_link) |
 
 
 ## Quick Start

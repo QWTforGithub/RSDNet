@@ -1,0 +1,876 @@
+2025-08-26 15:25:17,155   INFO  **********************Start logging**********************
+2025-08-26 15:25:17,156   INFO  CUDA_VISIBLE_DEVICES=0,1
+2025-08-26 15:25:17,156   INFO  Training in distributed mode : total_batch_size: 8
+2025-08-26 15:25:17,156   INFO  cfg_file         cfgs/waymo_models/rsdnet.yaml
+2025-08-26 15:25:17,156   INFO  batch_size       4
+2025-08-26 15:25:17,156   INFO  epochs           12
+2025-08-26 15:25:17,156   INFO  workers          2
+2025-08-26 15:25:17,156   INFO  extra_tag        default
+2025-08-26 15:25:17,156   INFO  ckpt             None
+2025-08-26 15:25:17,156   INFO  pretrained_model None
+2025-08-26 15:25:17,157   INFO  launcher         pytorch
+2025-08-26 15:25:17,157   INFO  tcp_port         18888
+2025-08-26 15:25:17,157   INFO  sync_bn          False
+2025-08-26 15:25:17,157   INFO  random_seed      None
+2025-08-26 15:25:17,157   INFO  ckpt_save_interval 1
+2025-08-26 15:25:17,157   INFO  local_rank       0
+2025-08-26 15:25:17,157   INFO  max_ckpt_save_num 30
+2025-08-26 15:25:17,157   INFO  merge_all_iters_to_one_epoch False
+2025-08-26 15:25:17,157   INFO  set_cfgs         None
+2025-08-26 15:25:17,157   INFO  max_waiting_mins 0
+2025-08-26 15:25:17,157   INFO  start_epoch      0
+2025-08-26 15:25:17,158   INFO  num_epochs_to_eval 0
+2025-08-26 15:25:17,158   INFO  save_to_file     False
+2025-08-26 15:25:17,158   INFO  use_tqdm_to_record True
+2025-08-26 15:25:17,158   INFO  logger_iter_interval 50
+2025-08-26 15:25:17,158   INFO  ckpt_save_time_interval 300
+2025-08-26 15:25:17,158   INFO  wo_gpu_stat      True
+2025-08-26 15:25:17,158   INFO  use_amp          False
+2025-08-26 15:25:17,158   INFO  output_dir       train/waymo/rsdnet.yaml
+2025-08-26 15:25:17,158   INFO  cfg.ROOT_DIR: /root/models/RSDNet_waymo
+2025-08-26 15:25:17,158   INFO  cfg.LOCAL_RANK: 0
+2025-08-26 15:25:17,158   INFO  cfg.CLASS_NAMES: ['Vehicle', 'Pedestrian', 'Cyclist']
+2025-08-26 15:25:17,159   INFO  ----------- DATA_CONFIG -----------
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.DATASET: WaymoDataset
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/waymo
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.PROCESSED_DATA_TAG: waymo_processed_data_v0_5_0
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.POINT_CLOUD_RANGE: [-76.8, -76.8, -2, 76.8, 76.8, 4.0]
+2025-08-26 15:25:17,159   INFO  ----------- DATA_SPLIT -----------
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2025-08-26 15:25:17,159   INFO  ----------- SAMPLED_INTERVAL -----------
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.train: 2
+2025-08-26 15:25:17,159   INFO  cfg.DATA_CONFIG.SAMPLED_INTERVAL.test: 1
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.FILTER_EMPTY_BOXES_FOR_TRAIN: True
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.DISABLE_NLZ_FLAG_ON_POINTS: True
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.USE_SHARED_MEMORY: False
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.SHARED_MEMORY_FILE_LIMIT: 35000
+2025-08-26 15:25:17,160   INFO  ----------- DATA_AUGMENTOR -----------
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.DISABLE_AUG_LIST: ['placeholder']
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.DATA_AUGMENTOR.AUG_CONFIG_LIST: [{'NAME': 'gt_sampling', 'USE_ROAD_PLANE': False, 'DB_INFO_PATH': ['waymo_processed_data_v0_5_0_waymo_dbinfos_train_sampled_1.pkl'], 'USE_SHARED_MEMORY': True, 'DB_DATA_PATH': ['waymo_processed_data_v0_5_0_gt_database_train_sampled_1_global.npy'], 'BACKUP_DB_INFO': {'DB_INFO_PATH': 'waymo_processed_data_v0_5_0_waymo_dbinfos_train_sampled_1_multiframe_-4_to_0.pkl', 'DB_DATA_PATH': 'waymo_processed_data_v0_5_0_gt_database_train_sampled_1_multiframe_-4_to_0_global.npy', 'NUM_POINT_FEATURES': 6}, 'PREPARE': {'filter_by_min_points': ['Vehicle:5', 'Pedestrian:10', 'Cyclist:10'], 'filter_by_difficulty': [-1]}, 'SAMPLE_GROUPS': ['Vehicle:15', 'Pedestrian:10', 'Cyclist:10'], 'NUM_POINT_FEATURES': 5, 'REMOVE_EXTRA_WIDTH': [0.0, 0.0, 0.0], 'LIMIT_WHOLE_SCENE': True}, {'NAME': 'random_world_flip', 'ALONG_AXIS_LIST': ['x', 'y']}, {'NAME': 'random_world_rotation', 'WORLD_ROT_ANGLE': [-0.78539816, 0.78539816]}, {'NAME': 'random_world_scaling', 'WORLD_SCALE_RANGE': [0.95, 1.05]}, {'NAME': 'random_world_translation', 'NOISE_TRANSLATE_STD': [0.5, 0.5, 0.5]}]
+2025-08-26 15:25:17,160   INFO  ----------- POINT_FEATURE_ENCODING -----------
+2025-08-26 15:25:17,160   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.encoding_type: absolute_coordinates_encoding
+2025-08-26 15:25:17,161   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.used_feature_list: ['x', 'y', 'z', 'intensity', 'elongation']
+2025-08-26 15:25:17,161   INFO  cfg.DATA_CONFIG.POINT_FEATURE_ENCODING.src_feature_list: ['x', 'y', 'z', 'intensity', 'elongation']
+2025-08-26 15:25:17,161   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR: [{'NAME': 'mask_points_and_boxes_outside_range', 'REMOVE_OUTSIDE_BOXES': True}, {'NAME': 'shuffle_points', 'SHUFFLE_ENABLED': {'train': True, 'test': True}}, {'NAME': 'transform_points_to_voxels_placeholder', 'VOXEL_SIZE': [0.32, 0.32, 0.1875]}]
+2025-08-26 15:25:17,161   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/waymo_dataset.yaml
+2025-08-26 15:25:17,161   INFO  cfg.DATA_CONFIG.POINTS_TANH_DIM: [3, 4]
+2025-08-26 15:25:17,161   INFO  ----------- MODEL -----------
+2025-08-26 15:25:17,161   INFO  cfg.MODEL.NAME: CenterPoint
+2025-08-26 15:25:17,161   INFO  ----------- VFE -----------
+2025-08-26 15:25:17,161   INFO  cfg.MODEL.VFE.NAME: DynamicVoxelVFE
+2025-08-26 15:25:17,161   INFO  cfg.MODEL.VFE.WITH_DISTANCE: False
+2025-08-26 15:25:17,161   INFO  cfg.MODEL.VFE.USE_ABSLOTE_XYZ: True
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.USE_NORM: True
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.NUM_FILTERS: [64, 64]
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM_SCALE: big
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM: True
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM_INPUT: xt
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM_TARGET: noise
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM_INPUT_CHANNEL_3D: 64
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.DM_OUTPUT_CHANNEL: 8
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.T: 1000
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.T_DIM: 128
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.BETA_START: 0.0001
+2025-08-26 15:25:17,162   INFO  cfg.MODEL.VFE.BETA_END: 0.02
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.NOISE_SCHEDULE: linear
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.SKIP_CONNECTION_MODE: cat
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.SKIP_CONNECTION_SCALE: equal
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.CLASS_NUM: 10
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.POINT_CLOUD_RANGE: [-76.8, -76.8, -2, 76.8, 76.8, 4.0]
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.VOXEL_SIZE: [0.32, 0.32, 0.1875]
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.CLASS_HIDDEN_DIM: 128
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.GEOMETRY_HIDDEN_DIM: 128
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.CON_SKIP_CONNECTION_MODE: add
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.CONDITION: True
+2025-08-26 15:25:17,163   INFO  cfg.MODEL.VFE.SCALE_3D: [1.0, 5.0]
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.ROTATION_3D: [0.0, 4.0]
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.TRANSLATION_3D: [0.0, 5.0]
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.DATA_TARGET: noise/x0
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.DATA_REVERSE: False
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.DP: True
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.VFE.USE_DISP_LOSS: False
+2025-08-26 15:25:17,164   INFO  ----------- BACKBONE_3D -----------
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.BACKBONE_3D.NAME: rsdnet
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.BACKBONE_3D.FEATURE_DIM: 128
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.BACKBONE_3D.WIN_SIZE: 12
+2025-08-26 15:25:17,164   INFO  cfg.MODEL.BACKBONE_3D.AFD_FEATURE_DIM: 128
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD_NUM_LAYERS: 1
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD_NUM_SBB: [8, 4, 4]
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD_DOWN_STRIDE: [1, 2, 2]
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD_DOWN_KERNEL_SIZE: [3, 3, 3]
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD: True
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.AFD_TRAINING: True
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.FG_THRESHOLD: 0.4
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.FEATMAP_STRIDE: 2
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.DETACH_FEATURE: True
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.GREOUP_POOLING_KERNEL_SIZE: [7, 3, 3]
+2025-08-26 15:25:17,165   INFO  cfg.MODEL.BACKBONE_3D.GROUP_CLASS_NAMES: [['Vehicle'], ['Pedestrian', 'Cyclist']]
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_SCALE: big
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM: True
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT: xt
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_TARGET: noise
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT_CHANNEL_2D: 128
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_INPUT_CHANNEL_3D: 128
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.DM_OUTPUT_CHANNEL: 8
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.T: 1000
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.T_DIM: 128
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.BETA_START: 0.0001
+2025-08-26 15:25:17,166   INFO  cfg.MODEL.BACKBONE_3D.BETA_END: 0.02
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.NOISE_SCHEDULE: linear
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.SKIP_CONNECTION_MODE: cat
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.SKIP_CONNECTION_SCALE: equal
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.CLASS_NUM: 10
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.POINT_CLOUD_RANGE: [-76.8, -76.8, -2, 76.8, 76.8, 4.0]
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.VOXEL_SIZE: [0.32, 0.32, 0.1875]
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.CLASS_HIDDEN_DIM: 128
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.GEOMETRY_HIDDEN_DIM: 128
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.CON_SKIP_CONNECTION_MODE: add
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.CONDITION: True
+2025-08-26 15:25:17,167   INFO  cfg.MODEL.BACKBONE_3D.SCALE_2D: [0.01, 1.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.ROTATION_2D: [-4.0, 0.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.TRANSLATION_2D: [-5.0, 0.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.SCALE_3D: [1.0, 5.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.ROTATION_3D: [0.0, 4.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.TRANSLATION_3D: [0.0, 5.0]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.DATA_TARGET: noise/x0
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.DATA_REVERSE: True
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.DP: True
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.BACKBONE_3D.USE_DISP_LOSS: False
+2025-08-26 15:25:17,168   INFO  ----------- DENSE_HEAD -----------
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.NAME: SparseDynamicHead
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.CLASS_AGNOSTIC: False
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.CLASS_NAMES_EACH_HEAD: [['Vehicle', 'Pedestrian', 'Cyclist']]
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.INPUT_FEATURES: 128
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.HEAD_CONV_TYPE: spconv
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.USE_BIAS_BEFORE_NORM: False
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.NUM_HM_CONV: 2
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.BN_EPS: 0.001
+2025-08-26 15:25:17,168   INFO  cfg.MODEL.DENSE_HEAD.BN_MOM: 0.01
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.R_FACTOR: 0.5
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.DYNAMIC_POS_NUM: 5
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.DCLA_REG_WEIGHT: 3
+2025-08-26 15:25:17,169   INFO  ----------- SEPARATE_HEAD_CFG -----------
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_ORDER: ['bbox']
+2025-08-26 15:25:17,169   INFO  ----------- HEAD_DICT -----------
+2025-08-26 15:25:17,169   INFO  ----------- bbox -----------
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.bbox.out_channels: 8
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.bbox.num_conv: 2
+2025-08-26 15:25:17,169   INFO  ----------- iou -----------
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.out_channels: 1
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.SEPARATE_HEAD_CFG.HEAD_DICT.iou.num_conv: 2
+2025-08-26 15:25:17,169   INFO  ----------- TARGET_ASSIGNER_CONFIG -----------
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.FEATURE_MAP_STRIDE: 1
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.NUM_MAX_OBJS: 500
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.GAUSSIAN_OVERLAP: 0.1
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.TARGET_ASSIGNER_CONFIG.MIN_RADIUS: 2
+2025-08-26 15:25:17,169   INFO  ----------- LOSS_CONFIG -----------
+2025-08-26 15:25:17,169   INFO  ----------- LOSS_WEIGHTS -----------
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_3d_mse_weight: 0.1
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_2d_mse_weight: 0.1
+2025-08-26 15:25:17,169   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_3d_disper_weight: 0.1
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loss_2d_disper_weight: 0.1
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.cls_weight: 1.0
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.loc_weight: 3.0
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_WEIGHTS.code_weights: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_TYPE: EW
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_DM: True
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.LOSS_CONFIG.LOSS_DISP: False
+2025-08-26 15:25:17,170   INFO  ----------- POST_PROCESSING -----------
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.SCORE_THRESH: 0.1
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.POST_CENTER_LIMIT_RANGE: [-80, -80, -10.0, 80, 80, 10.0]
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.MAX_OBJ_PER_SAMPLE: 2500
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.USE_IOU_TO_RECTIFY_SCORE: True
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.IOU_RECTIFIER: [0.68, 0.71, 0.65]
+2025-08-26 15:25:17,170   INFO  ----------- NMS_CONFIG -----------
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_TYPE: class_specific_nms
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_THRESH: [0.75, 0.6, 0.55]
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_PRE_MAXSIZE: [4096, 4096, 4096]
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.DENSE_HEAD.POST_PROCESSING.NMS_CONFIG.NMS_POST_MAXSIZE: [500, 500, 500]
+2025-08-26 15:25:17,170   INFO  ----------- POST_PROCESSING -----------
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.POST_PROCESSING.RECALL_THRESH_LIST: [0.3, 0.5, 0.7]
+2025-08-26 15:25:17,170   INFO  cfg.MODEL.POST_PROCESSING.EVAL_METRIC: waymo
+2025-08-26 15:25:17,170   INFO  ----------- OPTIMIZATION -----------
+2025-08-26 15:25:17,170   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 2
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 12
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.OPTIMIZER: adam_onecycle
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.LR: 0.003
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.05
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.PCT_START: 0.6
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 100
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.DECAY_STEP_LIST: [35, 45]
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.LR_DECAY: 0.1
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-07
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.LR_WARMUP: False
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.WARMUP_EPOCH: 1
+2025-08-26 15:25:17,171   INFO  cfg.OPTIMIZATION.GRAD_NORM_CLIP: 10
+2025-08-26 15:25:17,171   INFO  ----------- HOOK -----------
+2025-08-26 15:25:17,171   INFO  ----------- DisableAugmentationHook -----------
+2025-08-26 15:25:17,171   INFO  cfg.HOOK.DisableAugmentationHook.DISABLE_AUG_LIST: ['gt_sampling', 'random_world_flip', 'random_world_rotation', 'random_world_scaling', 'random_world_translation']
+2025-08-26 15:25:17,171   INFO  cfg.HOOK.DisableAugmentationHook.NUM_LAST_EPOCHS: 1
+2025-08-26 15:25:17,171   INFO  cfg.TAG: rsdnet
+2025-08-26 15:25:17,171   INFO  cfg.EXP_GROUP_PATH: waymo_models
+2025-08-26 15:25:17,171   INFO  cfg.OUTPUT_DIR: /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml
+2025-08-26 15:25:17,201   INFO  ----------- Create dataloader & network & optimizer -----------
+2025-08-26 15:25:37,304   INFO  Database filter by min points Vehicle: 1194368 => 1019925
+2025-08-26 15:25:37,520   INFO  Database filter by min points Pedestrian: 1114091 => 861175
+2025-08-26 15:25:37,540   INFO  Database filter by min points Cyclist: 53344 => 45156
+2025-08-26 15:25:37,810   INFO  Database filter by difficulty Vehicle: 1019925 => 1019925
+2025-08-26 15:25:38,035   INFO  Database filter by difficulty Pedestrian: 861175 => 861175
+2025-08-26 15:25:38,045   INFO  Database filter by difficulty Cyclist: 45156 => 45156
+2025-08-26 15:25:38,082   INFO  Loading GT database to shared memory
+2025-08-26 15:26:36,733   INFO  GT database has been saved to shared memory
+2025-08-26 15:26:37,930   INFO  Loading Waymo dataset
+2025-08-26 15:31:00,838   INFO  Total skipped info 0
+2025-08-26 15:31:00,839   INFO  Total samples for Waymo dataset: 158081
+2025-08-26 15:31:00,878   INFO  Total sampled samples for Waymo dataset: 79041
+2025-08-26 15:31:02,442   INFO  Loading Waymo dataset
+2025-08-26 15:32:13,808   INFO  Total skipped info 0
+2025-08-26 15:32:13,808   INFO  Total samples for Waymo dataset: 39987
+2025-08-26 15:32:15,335   INFO  ----------- Model CenterPoint created, param count: 14549950 -----------
+2025-08-26 15:32:15,335   INFO  ----------- Random Seed : 17237003 -----------
+2025-08-26 15:32:15,378   INFO  ----------- Model CenterPoint created, param count: 14549950 -----------
+2025-08-26 15:32:15,378   INFO  **********************Start training waymo_models/rsdnet(default)**********************
+2025-08-26 15:37:16,939   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 15:42:17,525   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 15:47:16,862   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 15:52:16,832   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 15:57:17,858   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:02:17,904   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:07:17,303   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:12:17,481   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:17:17,789   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:22:17,114   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:27:16,971   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:32:16,706   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:37:17,280   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:42:17,209   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:47:17,786   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:52:17,020   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 16:57:17,738   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:02:20,553   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:07:17,247   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:12:17,557   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:17:17,176   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:22:17,763   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:27:17,709   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:32:16,832   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:37:17,467   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:42:18,197   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:47:17,505   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:52:17,592   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 17:57:17,171   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:02:18,147   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:07:16,884   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:12:17,552   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:17:17,822   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:22:17,244   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:27:17,188   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:32:17,217   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:37:17,067   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:42:16,801   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:47:18,060   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:52:17,151   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 18:57:17,638   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:02:17,925   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:07:16,888   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:12:17,752   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:17:17,079   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:22:17,101   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:27:17,221   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:32:17,591   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:32:43,115   INFO  epoch0_losses: 3.553913611260266
+2025-08-26 19:37:49,546   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:42:45,356   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:47:47,302   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:52:44,553   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 19:57:45,203   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:02:44,922   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:07:45,039   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:12:44,642   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:17:45,344   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:22:44,753   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:27:44,678   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:32:45,053   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:37:44,758   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:42:44,726   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:47:45,188   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:52:45,232   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 20:57:45,254   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:02:44,953   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:07:44,655   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:12:44,638   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:17:44,452   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:22:44,969   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:27:45,145   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:32:45,441   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:37:45,047   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:42:45,165   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:47:45,417   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:52:45,410   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 21:57:44,441   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:02:45,275   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:07:44,555   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:12:49,100   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:17:44,936   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:22:44,987   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:27:44,647   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:32:45,296   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:37:45,317   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:42:44,274   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:47:44,677   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:52:45,528   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 22:57:44,999   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:02:45,493   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:07:44,758   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:12:44,946   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:17:45,245   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:22:44,470   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:27:45,235   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:29:21,169   INFO  epoch1_losses: 2.013738130220546
+2025-08-26 23:34:22,681   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:39:22,870   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:44:23,480   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:49:23,544   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:54:23,375   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-26 23:59:23,635   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:04:22,774   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:09:23,603   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:14:22,906   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:19:23,374   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:24:22,898   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:29:22,747   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:34:23,268   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:39:23,151   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:44:22,816   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:49:23,421   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:54:22,580   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 00:59:23,104   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:04:22,935   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:09:23,614   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:14:23,775   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:19:23,034   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:24:22,840   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:29:22,630   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:34:23,125   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:39:23,237   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:44:22,901   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:49:26,382   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:54:22,850   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 01:59:23,296   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:04:22,949   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:09:23,638   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:14:23,176   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:19:23,541   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:24:22,551   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:29:22,777   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:34:22,699   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:39:23,435   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:44:22,656   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:49:22,602   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:54:23,251   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 02:59:23,297   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:04:23,070   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:09:23,075   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:14:23,384   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:19:22,709   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:24:23,213   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:27:35,309   INFO  epoch2_losses: 1.9992302167843137
+2025-08-27 03:32:37,328   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:37:37,118   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:42:37,152   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:47:36,826   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:52:37,185   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 03:57:36,968   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:02:37,602   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:07:36,731   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:12:36,976   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:17:37,899   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:22:36,916   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:27:37,029   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:32:37,240   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:37:37,318   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:42:36,845   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:47:36,934   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:52:37,486   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 04:57:37,882   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:02:36,816   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:07:36,921   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:12:36,825   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:17:36,759   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:22:36,997   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:27:40,990   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:32:37,221   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:37:36,844   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:42:37,514   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:47:36,751   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:52:37,096   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 05:57:37,679   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:02:37,093   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:07:37,597   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:12:37,678   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:17:37,235   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:22:37,097   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:27:37,867   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:32:36,905   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:37:37,055   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:42:36,804   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:47:37,556   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:52:37,734   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 06:57:36,717   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:02:37,426   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:07:37,525   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:12:36,832   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:17:36,772   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:22:36,771   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:23:14,867   INFO  epoch3_losses: 1.8920526881296667
+2025-08-27 07:28:16,445   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:33:16,409   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:38:16,665   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:43:16,155   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:48:16,059   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:53:16,076   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 07:58:16,204   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:03:16,199   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:08:16,833   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:13:16,642   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:18:16,469   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:23:16,683   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:28:16,590   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:33:16,735   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:38:16,559   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:43:16,410   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:48:16,806   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:53:16,452   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 08:58:16,066   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:03:18,204   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:08:16,912   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:13:17,068   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:18:16,850   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:23:16,449   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:28:16,348   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:33:19,018   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:38:16,679   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:43:16,462   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:48:23,015   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:53:16,675   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 09:58:16,399   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:03:16,630   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:08:20,120   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:13:16,948   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:18:16,505   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:23:16,539   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:28:16,818   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:33:16,310   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:38:16,548   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:43:16,091   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:48:16,672   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:53:16,272   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 10:58:16,047   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:03:16,625   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:08:16,166   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:13:16,750   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:18:16,641   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:23:16,670   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:25:02,545   INFO  epoch4_losses: 1.861164558129892
+2025-08-27 11:30:03,639   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:35:04,872   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:40:04,326   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:45:03,786   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:50:04,766   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 11:55:04,107   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:00:04,690   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:05:04,120   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:10:03,885   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:15:04,667   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:20:04,415   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:25:03,994   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:30:04,538   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:35:04,144   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:40:04,660   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:45:04,650   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:50:04,858   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 12:55:04,529   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:00:04,788   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:05:04,154   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:10:04,211   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:15:04,645   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:20:04,430   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:25:04,812   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:30:05,116   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:35:04,515   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:40:04,358   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:45:04,599   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:50:03,963   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 13:55:04,448   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:00:04,577   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:05:04,447   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:10:13,102   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:15:04,634   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:20:04,150   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:25:09,125   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:30:03,843   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:35:04,071   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:40:06,244   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:45:04,788   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:50:08,669   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 14:55:04,404   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:00:04,234   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:05:05,015   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:10:03,671   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:15:04,698   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:20:03,868   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:25:04,124   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:30:04,344   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:35:04,934   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:38:34,945   INFO  epoch5_losses: 1.833262332725121
+2025-08-27 15:43:36,094   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:48:36,702   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:53:36,679   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 15:58:37,302   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:03:36,643   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:08:36,696   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:13:37,161   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:18:37,309   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:23:37,122   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:28:36,774   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:33:36,436   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:38:36,551   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:43:36,945   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:48:36,231   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:53:36,731   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 16:58:36,635   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:03:36,539   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:08:36,099   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:13:36,764   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:18:36,987   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:23:37,461   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:28:36,784   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:33:36,235   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:38:36,959   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:43:36,547   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:48:36,882   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:53:36,377   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 17:58:36,612   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:03:36,652   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:08:37,032   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:13:36,118   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:18:36,667   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:23:36,986   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:28:36,899   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:33:36,633   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:38:37,216   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:43:36,655   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:48:36,229   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:53:36,736   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 18:58:36,743   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:03:36,780   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:08:36,109   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:13:36,548   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:18:36,229   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:23:36,456   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:28:36,246   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:33:36,365   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:38:36,790   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:42:52,223   INFO  epoch6_losses: 1.819641649224483
+2025-08-27 19:47:54,534   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:52:54,475   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 19:57:54,234   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:02:53,725   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:07:54,179   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:12:54,117   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:17:54,272   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:22:53,713   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:27:54,320   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:32:54,152   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:37:53,870   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:42:54,118   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:47:54,400   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:52:54,287   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 20:57:53,800   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:02:53,498   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:07:54,224   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:12:54,039   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:17:53,808   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:22:54,270   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:27:54,117   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:32:54,477   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:37:53,999   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:42:54,475   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:47:54,351   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:52:53,500   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 21:57:53,613   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:02:54,512   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:07:54,114   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:12:54,512   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:17:53,977   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:22:54,540   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:27:54,395   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:32:54,084   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:37:54,307   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:42:54,754   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:47:53,986   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:52:54,257   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 22:57:53,693   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:02:54,353   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:07:54,194   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:12:54,791   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:17:53,956   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:22:53,785   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:27:54,032   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:32:54,081   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:37:54,144   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:42:53,594   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:47:54,358   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:48:01,980   INFO  epoch7_losses: 1.728534327231804
+2025-08-27 23:53:03,762   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-27 23:58:03,268   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:03:04,110   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:08:03,642   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:13:04,212   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:18:04,003   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:23:04,149   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:28:03,617   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:33:06,946   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:38:03,540   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:43:03,650   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:48:03,643   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:53:04,133   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 00:58:03,503   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:03:03,681   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:08:03,323   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:13:03,679   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:18:03,512   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:23:03,142   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:28:03,367   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:33:03,715   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:38:04,012   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:43:03,645   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:48:03,470   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:53:03,439   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 01:58:03,822   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:03:03,267   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:08:03,854   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:13:03,254   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:18:04,264   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:23:03,795   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:28:04,184   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:33:03,322   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:38:10,055   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:43:04,460   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:48:04,259   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:53:03,756   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 02:58:03,616   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:03:04,008   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:08:03,331   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:13:03,458   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:18:03,202   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:23:03,723   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:28:03,237   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:33:03,804   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:38:03,955   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:43:04,094   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:47:40,349   INFO  epoch8_losses: 1.6827992955348463
+2025-08-28 03:52:42,247   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 03:57:41,673   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:02:41,800   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:07:42,009   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:12:42,409   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:17:41,582   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:22:41,701   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:27:41,619   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:32:42,144   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:37:42,148   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:42:41,534   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:47:41,594   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:52:42,628   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 04:57:42,810   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:02:41,984   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:07:41,899   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:12:41,842   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:17:41,688   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:22:42,420   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:27:42,172   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:32:42,262   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:37:42,738   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:42:42,138   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:47:45,382   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:52:42,004   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 05:57:42,480   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:02:42,513   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:07:42,047   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:12:42,279   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:17:42,515   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:22:41,880   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:27:41,635   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:32:42,111   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:37:42,420   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:42:42,149   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:47:41,938   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:52:41,868   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 06:57:41,498   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:02:42,281   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:07:42,598   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:12:41,824   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:17:41,950   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:22:41,735   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:27:42,058   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:32:42,392   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:37:42,438   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:42:42,001   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:46:34,418   INFO  epoch9_losses: 1.6322610609803587
+2025-08-28 07:51:39,808   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 07:56:36,546   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:01:35,985   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:06:36,824   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:11:36,147   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:16:36,322   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:21:36,549   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:26:36,324   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:31:36,144   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:36:36,617   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:41:36,347   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:46:36,728   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:51:36,319   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 08:56:36,655   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:01:36,015   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:06:36,314   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:11:36,677   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:16:35,935   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:21:36,660   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:26:36,512   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:31:36,341   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:36:36,414   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:41:36,455   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:46:35,995   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:51:36,002   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 09:56:36,543   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:01:36,656   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:06:36,381   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:11:36,464   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:16:36,193   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:21:36,398   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:26:36,740   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:31:36,402   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:36:36,247   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:41:35,941   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:46:35,922   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:51:37,853   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 10:56:35,834   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:01:36,237   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:06:36,080   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:11:36,563   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:16:36,105   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:21:36,445   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:26:36,036   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:31:36,877   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:36:36,562   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:41:36,597   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:46:08,843   INFO  epoch10_losses: 1.5807409225435934
+2025-08-28 11:46:09,141   INFO  Disable augmentations: ['gt_sampling', 'random_world_flip', 'random_world_rotation', 'random_world_scaling', 'random_world_translation']
+2025-08-28 11:46:09,141   INFO  Deleting GT database from shared memory
+2025-08-28 11:46:10,532   INFO  GT database has been removed from shared memory
+2025-08-28 11:51:13,933   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 11:56:14,054   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:01:14,721   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:06:14,752   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:11:14,434   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:16:14,291   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:21:14,200   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:26:14,578   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:31:14,769   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:36:15,622   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:41:14,499   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:46:15,649   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:51:14,674   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 12:56:15,451   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:01:14,831   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:06:15,255   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:11:14,062   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:16:15,540   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:21:14,824   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:26:14,501   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:31:14,666   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:36:14,850   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:41:14,423   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:46:15,113   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:51:14,578   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 13:56:14,677   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:01:14,712   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:06:14,094   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:11:16,780   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:16:15,392   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:21:14,706   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:26:15,202   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:31:14,746   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:36:14,749   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:41:14,506   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:46:15,103   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:51:14,060   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 14:56:14,795   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:01:15,450   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:06:14,288   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:11:14,396   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:16:14,234   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:21:14,097   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:26:14,052   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:31:14,642   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:36:14,416   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:41:14,594   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:46:14,760   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:51:14,648   INFO  Save latest model to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/latest_model
+2025-08-28 15:53:16,357   INFO  epoch11_losses: 1.6191032944636874
+2025-08-28 15:53:16,647   INFO  batch_losses: [3.553913611260266, 2.013738130220546, 1.9992302167843137, 1.8920526881296667, 1.861164558129892, 1.833262332725121, 1.819641649224483, 1.728534327231804, 1.6827992955348463, 1.6322610609803587, 1.5807409225435934, 1.6191032944636874]
+2025-08-28 15:53:17,022   INFO  **********************End training waymo_models/rsdnet(default)**********************
+
+
+
+2025-08-28 15:53:17,022   INFO  **********************Start evaluation waymo_models/rsdnet(default)**********************
+2025-08-28 15:53:17,415   INFO  Loading Waymo dataset
+2025-08-28 15:54:19,518   INFO  Total skipped info 0
+2025-08-28 15:54:19,519   INFO  Total samples for Waymo dataset: 39987
+2025-08-28 15:54:19,525   INFO  ==> Loading parameters from checkpoint /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/ckpt/checkpoint_epoch_12.pth to CPU
+2025-08-28 15:54:19,770   INFO  ==> Checkpoint trained from version: pcdet+0.6.0+0000000
+2025-08-28 15:54:19,846   INFO  ==> Done (loaded 1135/1135)
+2025-08-28 15:54:19,871   INFO  *************** EPOCH 12 EVALUATION *****************
+2025-08-28 17:01:05,897   INFO  *************** Performance of EPOCH 12 *****************
+2025-08-28 17:01:05,898   INFO  Generate label finished(sec_per_example: 0.1002 second).
+2025-08-28 17:01:05,898   INFO  recall_roi_0.3: 0.000000
+2025-08-28 17:01:05,898   INFO  recall_rcnn_0.3: 0.884426
+2025-08-28 17:01:05,898   INFO  recall_roi_0.5: 0.000000
+2025-08-28 17:01:05,898   INFO  recall_rcnn_0.5: 0.842124
+2025-08-28 17:01:05,898   INFO  recall_roi_0.7: 0.000000
+2025-08-28 17:01:05,898   INFO  recall_rcnn_0.7: 0.611231
+2025-08-28 17:01:05,921   INFO  Average predicted number of objects(39987 samples): 239.085
+2025-08-29 02:58:28,407   INFO  
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_1/AP: 0.8250 
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_1/APH: 0.8204 
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_1/APL: 0.8250 
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_2/AP: 0.7463 
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_2/APH: 0.7419 
+OBJECT_TYPE_TYPE_VEHICLE_LEVEL_2/APL: 0.7463 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_1/AP: 0.8641 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_1/APH: 0.8102 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_1/APL: 0.8641 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_2/AP: 0.7950 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_2/APH: 0.7420 
+OBJECT_TYPE_TYPE_PEDESTRIAN_LEVEL_2/APL: 0.7950 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_1/AP: 0.0000 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_1/APH: 0.0000 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_1/APL: 0.0000 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_2/AP: 0.0000 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_2/APH: 0.0000 
+OBJECT_TYPE_TYPE_SIGN_LEVEL_2/APL: 0.0000 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_1/AP: 0.8212 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_1/APH: 0.8106 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_1/APL: 0.8212 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_2/AP: 0.7918 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_2/APH: 0.7815 
+OBJECT_TYPE_TYPE_CYCLIST_LEVEL_2/APL: 0.7918 
+
+2025-08-29 02:58:28,415   INFO  Result is saved to /root/models/RSDNet_waymo/tools/train/waymo/rsdnet.yaml/eval/eval_with_train/epoch_12/val
+2025-08-29 02:58:28,419   INFO  ****************Evaluation done.*****************
+2025-08-29 02:58:28,584   INFO  Epoch 12 has been evaluated
+2025-08-29 02:58:58,633   INFO  **********************End evaluation waymo_models/rsdnet(default)**********************

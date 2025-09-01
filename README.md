@@ -95,7 +95,7 @@ conda install ninja -y
 
 | Model | Benchmark | Only Training Data? | Num GPUs | mAP/H_L1 | mAP/H_L2| log | checkpoint |
 | :---: | :---: |:---------------:| :---: | :---: | :---: | :---: | :---: |
-| RSDNet | waymo |     &check;     | 4(bs=16) | 83.7/81.4 | 77.8/75.6 | [train_log](https://github.com/QWTforGithub/RSDNet/blob/main/outputs/waymo/train.log) | [Link1]( https://pan.baidu.com/s/1DcFe17IqmNqendULO3t6QQ?pwd=1111), [Link2](https://drive.google.com/file/d/1wUw8ag831ggZRVUFPP44QXNZm_P7M7BL/view?usp=sharing) |
+| RSDNet | waymo |     &check;     | 4(bs=8) | 83.7/81.4 | 77.8/75.6 | [train_log](https://github.com/QWTforGithub/RSDNet/blob/main/outputs/waymo/train.log) | [Link1]( https://pan.baidu.com/s/1DcFe17IqmNqendULO3t6QQ?pwd=1111), [Link2](https://drive.google.com/file/d/1wUw8ag831ggZRVUFPP44QXNZm_P7M7BL/view?usp=sharing) |
 
 ## Quick Start
 

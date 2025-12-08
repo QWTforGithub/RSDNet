@@ -3,6 +3,7 @@
 This repo is the official project repository of the paper **_Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion_**. 
  -  [ [arXiv](https://arxiv.org/pdf/2508.03252) ]
  -  The code will be released shortly...
+ -  The code is being organied...[08/12/2025]
 ## The Overall Framework 
 ...
 ## Citation

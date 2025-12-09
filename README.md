@@ -30,7 +30,7 @@ If you find our paper useful to your research, please cite our work as an acknow
 ## Installation
 
 ### Requirements
-The following environment is recommended for running **_RSDNet_** (an NVIDIA 3090 GPU or four NVIDIA 4090 GPUs):
+The following environment is recommended for running **_RSDNet_** (four or eight NVIDIA 4090 GPUs):
 - Ubuntu: 18.04 and above
 - gcc/g++: 7.5 and above
 - CUDA: 11.6 and above

@@ -113,6 +113,7 @@ python setup.py develop
 ### Training
   ```
 cd RSDNet-main/tools
+
 # Training on nuScenes for multiple GPUs
 bash scripts/train_nusc.sh 4
 # Training on nuScenes for single GPU
@@ -127,8 +128,14 @@ python train_waymo.py
 ### Testing
   ```
 cd RSDNet-main/tools
+
 # Testing on nuScenes for multiple GPUs
 bash scripts/test_nusc.sh 4
-# Training on Waymo Open for single GPU
-python test_waymo.py
+# Testing on nuScenes for single GPU
+python test_nusc.sh
+
+# Testing on waymo for multiple GPUs
+bash scripts/test_waymo.sh 8
+# Testing on waymo for single GPU
+python test_waymo.sh 
   ```

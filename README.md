@@ -82,31 +82,20 @@ python setup.py develop
     │   │   │── nuscenes_infos_10sweeps_train.pkl
     │   │   │── nuscenes_infos_10sweeps_val.pkl
   ```
-
-- Link raw dataset to processed NuScene dataset folder:
+  
+### Waymo Open
+- Download the official [Waymo Open](https://waymo.com/open/download/) dataset (with Lidar Segmentation) and organize the downloaded files as follows:
   ```bash
-  # NUSCENES_DIR: the directory of downloaded nuScenes dataset.
-  # PROCESSED_NUSCENES_DIR: the directory of processed nuScenes dataset (output dir).
-  ln -s ${NUSCENES_DIR} {PROCESSED_NUSCENES_DIR}/raw
-  ```
-  then the processed nuscenes folder is organized as follows:
-  ```bash
-  nuscene
-  |── raw
-      │── samples
-      │── sweeps
-      │── lidarseg
-      ...
-      │── v1.0-trainval
-      │── v1.0-test
-  |── info
-  ```
-
-- Link processed dataset to codebase.
-  ```bash
-  # PROCESSED_NUSCENES_DIR: the directory of processed nuScenes dataset (output dir).
-  mkdir data
-  ln -s ${PROCESSED_NUSCENES_DIR} ${CODEBASE_DIR}/data/nuscenes
+  RSDNet-main/data
+    ├── waymo
+    │   │   │── ImageSets
+    │   │   │── raw_data
+    │   │   │── waymo_processed_data_v0_5_0
+    │   │   │── waymo_processed_data_v0_5_0_gt_database_train_sampled_1
+    │   │   │── waymo_processed_data_v0_5_0_gt_database_train_sampled_1_global.npy
+    │   │   │── waymo_processed_data_v0_5_0_infos_train.pkl
+    │   │   │── waymo_processed_data_v0_5_0_infos_val.pkl
+    │   │   │── waymo_processed_data_v0_5_0_waymo_dbinfos_train_sampled_1.pkl
   ```
 
 ## Model Zoo

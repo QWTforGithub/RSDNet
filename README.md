@@ -61,20 +61,26 @@ python setup.py develop
 ```
 
 ## Data Preparation
-- ...
+- Please prefer to [OpenPCDet](https://github.com/open-mmlab/OpenPCDet/blob/master/docs/GETTING_STARTED.md) for building datasets (nuScenes and Waymo Open).
 
 ### nuScenes
 - Download the official [nuScenes](https://www.nuscenes.org/nuscenes#download) (or [Baidu Disk](https://pan.baidu.com/s/1Rsbi-Q_2EUm05lwQgn8T3Q?pwd=1111)(code:1111)) dataset (with Lidar Segmentation) and organize the downloaded files as follows:
   ```bash
-  NUSCENES_DIR
-  │── samples
-  │── sweeps
-  │── lidarseg
-  ...
-  │── v1.0-trainval 
-  │── v1.0-test
+    ├── nuscenes
+    │   │── v1.0-trainval (or v1.0-mini if you use mini)
+    │   │   │── gt_database_10sweeps_withvelo
+    │   │   │── lidarseg
+    │   │   │── maps
+    │   │   │── samples
+    │   │   │── sweeps
+    │   │   │── v1.0-mini
+    │   │   │── v1.0-test
+    │   │   │── v1.0-trainval
+    │   │   │── nuscenes_10sweeps_withvelo_lidar.npy
+    │   │   │── nuscenes_dbinfos_10sweeps_withvelo.pkl
+    │   │   │── nuscenes_infos_10sweeps_train.pkl
+    │   │   │── nuscenes_infos_10sweeps_val.pkl
   ```
-- The preprocess nuScenes information data can also be downloaded [[here](https://huggingface.co/datasets/Pointcept/nuscenes-compressed)] (only processed information, still need to download raw dataset and link to the folder), please agree the official license before download it.
 
 - Link raw dataset to processed NuScene dataset folder:
   ```bash

@@ -1,0 +1,4 @@
+waymo-open-dataset-tf-2-11-0==1.6.1
+dask==2023.3.1
+cumm-cu116==0.4.11
+spconv-cu116==2.3.6

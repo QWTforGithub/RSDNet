@@ -45,6 +45,7 @@ conda create -n dlf python=3.8 -y
 conda activate dlf
 pip install torch==1.13.1+cu116 torchvision==0.14.1+cu116 torchaudio==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu116
 
+cd RSDNet-main/envs
 pip install -r requirements1.txt
 pip install -r requirements2.txt
 pip install -r requirements3.txt
@@ -54,6 +55,9 @@ pip install -r requirements6.txt
 pip install -r requirements7.txt
 pip install -r requirements8.txt
 pip install -r requirements9.txt
+
+cd RSDNet-main
+python setup.py develop
 ```
 
 ## Data Preparation

@@ -134,8 +134,8 @@ bash scripts/test_nusc.sh 4
 # Testing on nuScenes for single GPU
 python test_nusc.sh
 
-# Testing on waymo for multiple GPUs
+# Testing on waymo open for multiple GPUs
 bash scripts/test_waymo.sh 8
-# Testing on waymo for single GPU
+# Testing on waymo open for single GPU
 python test_waymo.sh 
   ```

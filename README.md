@@ -66,6 +66,7 @@ python setup.py develop
 ### nuScenes
 - Download the official [nuScenes](https://www.nuscenes.org/nuscenes#download) (or [Baidu Disk](https://pan.baidu.com/s/1Rsbi-Q_2EUm05lwQgn8T3Q?pwd=1111)(code:1111)) dataset (with Lidar Segmentation) and organize the downloaded files as follows:
   ```bash
+  RSDNet-main/data
     ├── nuscenes
     │   │── v1.0-trainval (or v1.0-mini if you use mini)
     │   │   │── gt_database_10sweeps_withvelo

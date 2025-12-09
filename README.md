@@ -5,7 +5,7 @@ This repo is the official project repository of the paper **_Robust Single-Stage
  -  The code will be released shortly...
  -  The code is being organied...[08/12/2025]
 ## The Overall Framework 
-...
+<img src="assets/frameworj.png" alt="cdsegnet" width="900"/> <br/>
 ## Citation
 If you find our paper useful to your research, please cite our work as an acknowledgment.
 ```bib

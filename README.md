@@ -108,10 +108,27 @@ python setup.py develop
 | RSDNet | waymo |     &check;     | 4(bs=8) | 83.7/81.4 | 77.8/75.6 | [train_log](https://github.com/QWTforGithub/RSDNet/blob/main/outputs/waymo/train.log) | [Link1]( https://pan.baidu.com/s/1DcFe17IqmNqendULO3t6QQ?pwd=1111), [Link2](https://drive.google.com/file/d/1wUw8ag831ggZRVUFPP44QXNZm_P7M7BL/view?usp=sharing) |
 
 ## Quick Start
+- Please prefer to [OpenPCDet](https://github.com/open-mmlab/OpenPCDet/blob/master/docs/GETTING_STARTED.md) for training and testing.
 
 ### Training
-...
+  ```
+cd RSDNet-main/tools
+# Training on nuScenes for multiple GPUs
+bash scripts/train_nusc.sh 4
+# Training on nuScenes for single GPU
+python train_nusc.py
 
+# Training on Waymo Open for multiple GPUs
+bash scripts/train_waymo.sh 8
+# Training on Waymo Open for single GPU
+python train_waymo.py
+  ```
 
 ### Testing
-...
+  ```
+cd RSDNet-main/tools
+# Testing on nuScenes for multiple GPUs
+bash scripts/test_nusc.sh 4
+# Training on Waymo Open for single GPU
+python test_waymo.py
+  ```

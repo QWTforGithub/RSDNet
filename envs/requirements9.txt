@@ -1,3 +1,0 @@
-nuscenes-devkit==1.0.5
-protobuf==3.19.6
-tensorboardx==2.4

@@ -18,8 +18,9 @@ If you find our paper useful to your research, please cite our work as an acknow
 ```
 
 ## Motivation of Modeling Multiple Perturbations in DDPMs
-Since the prior distribution is defined as Gaussian, exiting DDPMs only can model Gaussion distributions. <br/>
-However, for some tasks, Gaussian distributions maybe not the optimal choice, such as image restoration or super-resolution (often follow Laplacian distributions), fluorescence microscopy (often follow Passion distributions). <br/>
+- Since the prior distribution is defined as Gaussian, exiting DDPMs only can model Gaussion distributions. <br/>
+- However, for some tasks, Gaussian distributions maybe not the optimal choice, such as image restoration or super-resolution (often follow Laplacian distributions), fluorescence microscopy (often follow Passion distributions). <br/>
+- Modeling other distributions in DDPMs, 
 
 ## Overview
 - [Installation](#installation)

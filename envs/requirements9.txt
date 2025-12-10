@@ -1,0 +1,5 @@
+nuscenes-devkit==1.0.5
+protobuf==3.19.6
+tensorboardx==2.4
+pillow==9.2.0
+open3d==0.15.2

@@ -32,7 +32,7 @@ If you find our paper useful to your research (3D Detection or modeling multiple
 - Moreover, generation remains driven by stochastic perturbations introduced at inference, preserving diversity.
 - Our method is intended to broadly impact generative tasks, as it offers a general concept.
 - **_We plan to release extended versions in future work._**
-- For the detailed idea, please refer to the uploaded [PDF](https://github.com/QWTforGithub/RSDNet/blob/main/the%20fifth%20report.pdf) (the author’s group-meeting presentation slides).
+- For the detailed idea, please refer to the uploaded [PDF](https://github.com/QWTforGithub/RSDNet/blob/main/the%20fifth%20report.pdf) (the author’s group-meeting PPT).
 
 ## Overview
 - [Installation](#installation)

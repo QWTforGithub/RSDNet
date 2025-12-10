@@ -7,7 +7,7 @@ This repo is the official project repository of the paper **_Robust Single-Stage
 ## The Overall Framework 
 <img src="assets/framework.png" alt="rsdnet" width="900"/> <br/>
 ## Citation
-If you find our paper useful to your research, please cite our work as an acknowledgment.
+If you find our paper useful to your research (3D Detection or modeling multiple perturbations), please cite our work as an acknowledgment.
 ```bib
 @article{qu2025robust,
   title={Robust Single-Stage Fully Sparse 3D Object Detection via Detachable Latent Diffusion},

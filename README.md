@@ -18,9 +18,21 @@ If you find our paper useful to your research, please cite our work as an acknow
 ```
 
 ## Motivation of Modeling Multiple Perturbations in DDPMs
-- Since the prior distribution is defined as Gaussian, exiting DDPMs only can model Gaussion distributions. <br/>
-- However, for some tasks, Gaussian distributions maybe not the optimal choice, such as image restoration or super-resolution (often follow Laplacian distributions), fluorescence microscopy (often follow Passion distributions). <br/>
-- Modeling other distributions in DDPMs, 
+- Enabling arbitrary distribution modeling would be a significant extension of DDPMs.
+- Since the prior distribution is defined as Gaussian, exiting DDPMs only can model Gaussion distributions.
+- However, for some tasks, Gaussian distributions maybe not the optimal choice, such as image restoration or super-resolution (often follow Laplacian distributions), fluorescence microscopy (often follow Passion distributions).
+- Modeling other distributions in DDPMs requires rederiving the posterior (the ground truth in DDPMs). 
+- This is highly impractical due to the complex derivations involved.
+- The training of DDPMs essentially performs **_distribution matching_**.
+- **_Distribution matching_** aims to sample accurate intermediate variables, xt, xt-1,...,x0.
+- So, can we directly fit these intermediate variables and introduce perturbations to achieve diverse generation?
+- Thus, we introduce the notion of **_sample fitting_** to realize the noise-injection and denoising mechanisms in DDPMs.
+- This allows us to discard explicit distribution assumptions, since we directly fit the intermediate variables.
+- This removes the need to rederive the posterior, as intermediate variables are no longer sampled from a distribution but directly predicted.
+- Moreover, generation remains driven by stochastic perturbations introduced at inference, preserving diversity.
+- Our method is intended to broadly impact generative tasks, as it offers a general concept.
+- **_We plan to release extended versions in future work._**
+- For the detailed idea, please refer to the uploaded [PDF](https://github.com/QWTforGithub/RSDNet/blob/main/the%20fifth%20report.pdf) (the author’s group-meeting presentation slides).
 
 ## Overview
 - [Installation](#installation)
